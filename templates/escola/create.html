@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Escola</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f9faff 0%, #eef2fd 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+            color: #1a2b4c;
+        }
+        .container {
+            max-width: 680px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 20px 40px -10px rgba(18,52,77,0.12), 0 8px 16px -6px rgba(0,32,64,0.08), inset 0 1px 2px rgba(255,255,255,0.6);
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255,255,255,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        .container::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(59,130,246,0.03) 0%, transparent 80%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            color: #0a1e2f;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 3px solid #cbd5e1;
+            padding-bottom: 1rem;
+            border-image: linear-gradient(to right, #3b82f6, #8b5cf6) 1;
+            border-bottom-style: solid;
+            border-bottom-width: 3px;
+            position: relative;
+            z-index: 1;
+        }
+        h1::before {
+            content: "\f549"; /* escola */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: #2563eb;
+            background: linear-gradient(145deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #formCadastro { position: relative; z-index: 2; }
+        .form-group { margin-bottom: 1.5rem; position: relative; }
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #1e3a5f;
+            margin-bottom: 0.4rem;
+            transition: color 0.2s;
+        }
+        label i { margin-right: 0.5rem; color: #3b82f6; font-size: 0.95rem; }
+        input {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            outline: none;
+            transition: all 0.2s ease;
+            color: #0a1e2f;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+        }
+        input:focus {
+            border-color: #3b82f6;
+            background: #ffffff;
+            box-shadow: 0 8px 20px -8px rgba(59,130,246,0.25);
+        }
+        input::placeholder { color: #94a3b8; font-weight: 400; opacity: 0.8; }
+        .form-group:focus-within label { color: #2563eb; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: 0.15s ease;
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            margin-right: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .btn i { font-size: 1rem; }
+        .btn-success {
+            background: linear-gradient(165deg, #2563eb, #3b82f6);
+            color: white;
+            box-shadow: 0 8px 18px -6px #3b82f6;
+        }
+        .btn-success:hover {
+            background: linear-gradient(165deg, #1d4ed8, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 24px -8px #1e3a8a;
+        }
+        .btn-secondary {
+            background: white;
+            color: #1e293b;
+            border: 2px solid #e2e8f0;
+        }
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+        a.btn { vertical-align: middle; }
+        @media (max-width: 550px) {
+            .container { padding: 2rem 1.5rem; }
+            h1 { font-size: 1.8rem; }
+            .btn { width: 100%; margin-right: 0; margin-bottom: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastrar Nova Escola</h1>
+        
+        <form id="formCadastro">
+            <div class="form-group">
+                <label for="nome"><i class="fas fa-school"></i> Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Nome da escola" required>
+            </div>
+            <div class="form-group">
+                <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+            </div>
+            <div class="form-group">
+                <label for="cidade"><i class="fas fa-city"></i> Cidade</label>
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+            </div>
+            <div class="form-group">
+                <label for="pais"><i class="fas fa-globe"></i> País</label>
+                <input type="text" id="pais" name="pais" placeholder="País" required>
+            </div>
+            <div class="form-group">
+                <label for="cnpj"><i class="fas fa-id-card"></i> CNPJ</label>
+                <input type="text" id="cnpj" name="cnpj" placeholder="00.000.000/0001-00" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" placeholder="contato@escola.edu.br" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone"><i class="fas fa-phone"></i> Telefone</label>
+                <input type="text" id="telefone" name="telefone" placeholder="(00) 0000-0000" required>
+            </div>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-check-circle"></i> Cadastrar
+                </button>
+                <a href="/escolas" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formCadastro').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const escola = {
+                nome: document.getElementById('nome').value,
+                endereco: document.getElementById('endereco').value,
+                cidade: document.getElementById('cidade').value,
+                pais: document.getElementById('pais').value,
+                cnpj: document.getElementById('cnpj').value,
+                email: document.getElementById('email').value,
+                telefone: document.getElementById('telefone').value
+            };
+            
+            fetch('/api/escolas', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(escola)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    alert('Erro ao cadastrar: ' + data.erro);
+                } else {
+                    alert(data.mensagem);
+                    window.location.href = '/escolas';
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao cadastrar escola. Verifique o console.');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 import psycopg
 
 # String de conexão Neon PostgreSQL
-DATABASE_URL = "postgresql://neondb_owner:npg_fwmzQkO9L2Rc@ep-misty-violet-aiabdlxt-pooler.c-4.us-east-1.aws.neon.tech/escola_db?sslmode=require"
+DATABASE_URL = 'postgresql://neondb_owner:npg_m0ZpALNQ5Rct@ep-quiet-king-ac16a4rs-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
 
 # Função para conectar ao banco
 def conectar():

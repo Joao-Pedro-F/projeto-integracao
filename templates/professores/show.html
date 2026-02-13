@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Aluno</title>
-    <!-- Google Fonts e Font Awesome -->
+    <title>Visualizar Professor</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Reset e base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(145deg, #f9faff 0%, #eef2fd 100%);
@@ -26,23 +19,17 @@
             line-height: 1.5;
             color: #1a2b4c;
         }
-
         .container {
             max-width: 720px;
             width: 100%;
             background: #ffffff;
             border-radius: 36px;
-            box-shadow: 
-                0 20px 40px -10px rgba(18, 52, 77, 0.12),
-                0 8px 16px -6px rgba(0, 32, 64, 0.08),
-                inset 0 1px 2px rgba(255,255,255,0.6);
+            box-shadow: 0 20px 40px -10px rgba(18,52,77,0.12), 0 8px 16px -6px rgba(0,32,64,0.08), inset 0 1px 2px rgba(255,255,255,0.6);
             padding: 2.5rem 2rem;
             border: 1px solid rgba(255,255,255,0.6);
-            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
         }
-
         .container::after {
             content: '';
             position: absolute;
@@ -55,7 +42,6 @@
             z-index: 0;
             pointer-events: none;
         }
-
         h1 {
             font-size: 2rem;
             font-weight: 700;
@@ -73,9 +59,8 @@
             position: relative;
             z-index: 1;
         }
-
         h1::before {
-            content: "\f007"; /* ícone de usuário */
+            content: "\f51c"; /* chapéu */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -84,8 +69,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        /* Loading */
         #loading {
             text-align: center;
             padding: 2.5rem 1rem;
@@ -101,7 +84,6 @@
             backdrop-filter: blur(4px);
             margin-bottom: 1.5rem;
         }
-
         .spinner {
             width: 48px;
             height: 48px;
@@ -109,15 +91,8 @@
             border-top: 4px solid #3b82f6;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
-            margin-bottom: 0.5rem;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Área de detalhes do aluno */
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .detalhes {
             background: #f8fafc;
             border-radius: 24px;
@@ -131,7 +106,6 @@
             position: relative;
             z-index: 2;
         }
-
         .detalhes p {
             display: flex;
             align-items: baseline;
@@ -139,11 +113,7 @@
             border-bottom: 1px dashed #e2e8f0;
             font-size: 1rem;
         }
-
-        .detalhes p:last-child {
-            border-bottom: none;
-        }
-
+        .detalhes p:last-child { border-bottom: none; }
         .detalhes strong {
             min-width: 110px;
             font-weight: 600;
@@ -152,14 +122,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-
-        .detalhes strong i {
-            color: #3b82f6;
-            font-size: 1rem;
-            width: 1.25rem;
-            text-align: center;
-        }
-
+        .detalhes strong i { color: #3b82f6; font-size: 1rem; width: 1.25rem; text-align: center; }
         .detalhes span {
             color: #0f172a;
             font-weight: 500;
@@ -170,8 +133,6 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.02);
             word-break: break-word;
         }
-
-        /* Botões */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -188,89 +149,52 @@
             letter-spacing: 0.01em;
             border: 1px solid transparent;
             box-shadow: 0 4px 8px rgba(0,0,0,0.02);
-            background: white;
-            color: #1e293b;
-            border: 2px solid #e2e8f0;
             margin-right: 0.75rem;
             margin-top: 0.5rem;
         }
-
-        .btn i {
-            font-size: 1rem;
-        }
-
+        .btn i { font-size: 1rem; }
         .btn-secondary {
             background: white;
-            border-color: #e2e8f0;
+            color: #1e293b;
+            border: 2px solid #e2e8f0;
         }
-
         .btn-secondary:hover {
             background: #f8fafc;
             border-color: #cbd5e1;
             transform: translateY(-2px);
         }
-
         .btn-warning {
             background: linear-gradient(165deg, #f59e0b, #fbbf24);
             color: white;
-            border: none;
             box-shadow: 0 8px 18px -6px #f59e0b;
         }
-
         .btn-warning:hover {
             background: linear-gradient(165deg, #d97706, #f59e0b);
             transform: translateY(-2px);
             box-shadow: 0 14px 24px -8px #b45309;
         }
-
-        a.btn {
-            vertical-align: middle;
-        }
-
-        /* Responsividade */
+        a.btn { vertical-align: middle; }
         @media (max-width: 550px) {
-            .container {
-                padding: 2rem 1.5rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            .detalhes {
-                padding: 1.5rem;
-            }
-            .detalhes p {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.25rem;
-            }
-            .detalhes strong {
-                min-width: auto;
-            }
-            .detalhes span {
-                margin-left: 0;
-                margin-top: 0.2rem;
-                width: 100%;
-            }
-            .btn {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 0.75rem;
-            }
+            .container { padding: 2rem 1.5rem; }
+            h1 { font-size: 1.8rem; }
+            .detalhes { padding: 1.5rem; }
+            .detalhes p { flex-direction: column; align-items: flex-start; }
+            .detalhes strong { min-width: auto; }
+            .detalhes span { margin-left: 0; margin-top: 0.2rem; width: 100%; }
+            .btn { width: 100%; margin-right: 0; margin-bottom: 0.75rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Detalhes do Aluno</h1>
+        <h1>Detalhes do Professor</h1>
         
-        <!-- Loading com spinner animado -->
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados do aluno...</span>
+            <span>⏳ Carregando dados do professor...</span>
         </div>
         
-        <!-- Área de detalhes (inicialmente oculta) -->
-        <div id="detalhesAluno" class="detalhes" style="display: none;">
+        <div id="detalhesProfessor" class="detalhes" style="display: none;">
             <p><strong><i class="fas fa-hashtag"></i> ID</strong> <span id="id"></span></p>
             <p><strong><i class="fas fa-user"></i> Nome</strong> <span id="nome"></span></p>
             <p><strong><i class="fas fa-map-marker-alt"></i> Endereço</strong> <span id="endereco"></span></p>
@@ -280,48 +204,41 @@
             <p><strong><i class="fas fa-envelope"></i> Email</strong> <span id="email"></span></p>
         </div>
         
-        <!-- Botões de ação -->
-        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
-            <a href="/" class="btn btn-secondary">
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <a href="/professores" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Voltar
             </a>
-            <a href="#" onclick="editarAluno()" class="btn btn-warning">
+            <a href="#" onclick="editarProfessor()" class="btn btn-warning">
                 <i class="fas fa-edit"></i> Editar
             </a>
         </div>
     </div>
 
     <script>
-        // ========== CÓDIGO ORIGINAL PRESERVADO ==========
-        // Pegar o ID da URL
         const url = window.location.pathname;
         const id = url.split('/')[2];
         
-        // Função para carregar dados do aluno
-        function carregarAluno() {
-            fetch(`/api/alunos/${id}`)
+        function carregarProfessor() {
+            fetch(`/api/professores/${id}`)
                 .then(response => response.json())
-                .then(aluno => {
-                    console.log('Dados recebidos:', aluno);
-                    
-                    if (aluno) {
-                        // Esconder loading e mostrar dados
+                .then(professor => {
+                    if (professor) {
                         document.getElementById('loading').style.display = 'none';
-                        document.getElementById('detalhesAluno').style.display = 'grid'; // grid para layout
+                        document.getElementById('detalhesProfessor').style.display = 'grid';
                         
-                        document.getElementById('id').textContent = aluno.id || '';
-                        document.getElementById('nome').textContent = aluno.nome || '';
-                        document.getElementById('endereco').textContent = aluno.endereco || '';
-                        document.getElementById('cidade').textContent = aluno.cidade || '';
-                        document.getElementById('pais').textContent = aluno.pais || '';
-                        document.getElementById('cpf').textContent = aluno.cpf || '';
-                        document.getElementById('email').textContent = aluno.email || '';
+                        document.getElementById('id').textContent = professor.id || '';
+                        document.getElementById('nome').textContent = professor.nome || '';
+                        document.getElementById('endereco').textContent = professor.endereco || '';
+                        document.getElementById('cidade').textContent = professor.cidade || '';
+                        document.getElementById('pais').textContent = professor.pais || '';
+                        document.getElementById('cpf').textContent = professor.cpf || '';
+                        document.getElementById('email').textContent = professor.email || '';
                     } else {
-                        alert('Aluno não encontrado!');
+                        alert('Professor não encontrado!');
                     }
                 })
                 .catch(error => {
-                    console.error('Erro ao carregar aluno:', error);
+                    console.error('Erro ao carregar professor:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
                         <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
@@ -329,13 +246,11 @@
                 });
         }
         
-        // Redirecionar para edição
-        function editarAluno() {
-            window.location.href = `/alunos/${id}/edit`;
+        function editarProfessor() {
+            window.location.href = `/professores/${id}/edit`;
         }
         
-        // Carregar aluno quando a página carregar
-        window.onload = carregarAluno;
+        window.onload = carregarProfessor;
     </script>
 </body>
 </html>

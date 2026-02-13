@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Alunos</title>
+    <title>Lista de Professores</title>
     <!-- Google Fonts e Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -75,7 +75,7 @@
         }
 
         h1::before {
-            content: "\f0ca"; /* ícone de lista (tabela) */
+            content: "\f51c"; /* ícone de professor (chapéu) */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -85,7 +85,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* ===== BOTÃO DE CADASTRO ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -121,7 +120,6 @@
             box-shadow: 0 14px 24px -8px #1e3a8a;
         }
 
-        /* ===== TABELA ===== */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -170,7 +168,6 @@
             background: #f8fafc;
         }
 
-        /* ===== BOTÕES DE AÇÃO NA TABELA ===== */
         .btn-sm {
             padding: 0.4rem 1rem;
             font-size: 0.8rem;
@@ -209,7 +206,6 @@
             transform: translateY(-1px);
         }
 
-        /* ===== LOADING ===== */
         .loading-row td {
             text-align: center;
             padding: 2rem;
@@ -223,48 +219,30 @@
             color: #3b82f6;
         }
 
-        /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            td, th {
-                padding: 0.9rem 0.6rem;
-            }
-            .btn-sm {
-                padding: 0.3rem 0.7rem;
-                margin-right: 0.2rem;
-            }
+            .container { padding: 2rem 1.2rem; }
+            h1 { font-size: 1.8rem; }
+            td, th { padding: 0.9rem 0.6rem; }
+            .btn-sm { padding: 0.3rem 0.7rem; margin-right: 0.2rem; }
         }
 
         @media (max-width: 550px) {
-            .btn {
-                width: 100%;
-                margin-bottom: 1rem;
-            }
-            table {
-                font-size: 0.85rem;
-            }
-            .btn-sm {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.75rem;
-            }
+            .btn { width: 100%; margin-bottom: 1rem; }
+            table { font-size: 0.85rem; }
+            .btn-sm { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Alunos</h1>
+        <h1>Lista de Professores</h1>
         
-        <a href="/alunos/create" class="btn btn-primary">
-            <i class="fas fa-plus-circle"></i> Cadastrar Novo Aluno
+        <a href="/professores/create" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> Cadastrar Novo Professor
         </a>
         
         <div class="table-responsive">
-            <table id="tabelaAlunos">
+            <table id="tabelaProfessores">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -276,11 +254,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Linha de carregamento será exibida enquanto busca dados -->
                     <tr class="loading-row">
                         <td colspan="6">
                             <i class="fas fa-spinner fa-pulse"></i><br>
-                            Carregando alunos...
+                            Carregando professores...
                         </td>
                     </tr>
                 </tbody>
@@ -289,59 +266,55 @@
     </div>
 
     <script>
-        // ========== FUNCIONALIDADE ORIGINAL PRESERVADA ==========
-        // Função para carregar todos os alunos
-        function carregarAlunos() {
-            fetch('/api/alunos')
+        function carregarProfessores() {
+            fetch('/api/professores')
                 .then(response => response.json())
-                .then(alunos => {
-                    const tbody = document.querySelector('#tabelaAlunos tbody');
+                .then(professores => {
+                    const tbody = document.querySelector('#tabelaProfessores tbody');
                     tbody.innerHTML = '';
                     
-                    alunos.forEach(aluno => {
+                    professores.forEach(professor => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                            <td>${aluno.id}</td>
-                            <td>${aluno.nome}</td>
-                            <td>${aluno.cidade}</td>
-                            <td>${aluno.cpf}</td>
-                            <td>${aluno.email}</td>
+                            <td>${professor.id}</td>
+                            <td>${professor.nome}</td>
+                            <td>${professor.cidade}</td>
+                            <td>${professor.cpf}</td>
+                            <td>${professor.email}</td>
                             <td>
-                                <a href="/alunos/${aluno.id}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> Ver</a>
-                                <a href="/alunos/${aluno.id}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
-                                <button onclick="confirmarExclusao(${aluno.id})" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
+                                <a href="/professores/${professor.id}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> Ver</a>
+                                <a href="/professores/${professor.id}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                <button onclick="confirmarExclusao(${professor.id})" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
                             </td>
                         `;
                         tbody.appendChild(tr);
                     });
                 })
                 .catch(error => {
-                    console.error('Erro ao carregar alunos:', error);
-                    const tbody = document.querySelector('#tabelaAlunos tbody');
+                    console.error('Erro ao carregar professores:', error);
+                    const tbody = document.querySelector('#tabelaProfessores tbody');
                     tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #991b1b;"><i class="fas fa-exclamation-triangle"></i><br>Erro ao carregar dados.</td></tr>';
                 });
         }
         
-        // Função para excluir aluno
         function confirmarExclusao(id) {
-            if (confirm('Tem certeza que deseja excluir este aluno?')) {
-                fetch(`/api/alunos/${id}`, {
+            if (confirm('Tem certeza que deseja excluir este professor?')) {
+                fetch(`/api/professores/${id}`, {
                     method: 'DELETE'
                 })
                 .then(response => response.json())
                 .then(data => {
                     alert(data.mensagem);
-                    carregarAlunos();
+                    carregarProfessores();
                 })
                 .catch(error => {
                     console.error('Erro ao excluir:', error);
-                    alert('Erro ao excluir aluno.');
+                    alert('Erro ao excluir professor.');
                 });
             }
         }
         
-        // Carregar alunos quando a página carregar
-        window.onload = carregarAlunos;
+        window.onload = carregarProfessores;
     </script>
 </body>
 </html>

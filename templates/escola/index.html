@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Alunos</title>
-    <!-- Google Fonts e Font Awesome -->
+    <title>Lista de Escolas</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== RESET E BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(145deg, #f9faff 0%, #eef2fd 100%);
@@ -26,23 +19,17 @@
             line-height: 1.5;
             color: #1a2b4c;
         }
-
         .container {
             max-width: 1200px;
             width: 100%;
             background: #ffffff;
             border-radius: 36px;
-            box-shadow: 
-                0 20px 40px -10px rgba(18, 52, 77, 0.12),
-                0 8px 16px -6px rgba(0, 32, 64, 0.08),
-                inset 0 1px 2px rgba(255,255,255,0.6);
+            box-shadow: 0 20px 40px -10px rgba(18,52,77,0.12), 0 8px 16px -6px rgba(0,32,64,0.08), inset 0 1px 2px rgba(255,255,255,0.6);
             padding: 2.5rem 2rem;
             border: 1px solid rgba(255,255,255,0.6);
-            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
         }
-
         .container::after {
             content: '';
             position: absolute;
@@ -55,7 +42,6 @@
             z-index: 0;
             pointer-events: none;
         }
-
         h1 {
             font-size: 2rem;
             font-weight: 700;
@@ -73,9 +59,8 @@
             position: relative;
             z-index: 1;
         }
-
         h1::before {
-            content: "\f0ca"; /* ícone de lista (tabela) */
+            content: "\f549"; /* escola */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -84,8 +69,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        /* ===== BOTÃO DE CADASTRO ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -104,24 +87,17 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.02);
             margin-bottom: 1.5rem;
         }
-
-        .btn i {
-            font-size: 1rem;
-        }
-
+        .btn i { font-size: 1rem; }
         .btn-primary {
             background: linear-gradient(165deg, #2563eb, #3b82f6);
             color: white;
             box-shadow: 0 8px 18px -6px #3b82f6;
         }
-
         .btn-primary:hover {
             background: linear-gradient(165deg, #1d4ed8, #2563eb);
             transform: translateY(-2px);
             box-shadow: 0 14px 24px -8px #1e3a8a;
         }
-
-        /* ===== TABELA ===== */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -130,7 +106,6 @@
             position: relative;
             z-index: 2;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
@@ -139,12 +114,10 @@
             border-radius: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
-
         thead tr {
             background: linear-gradient(145deg, #f8fafc, #f1f5f9);
             border-bottom: 2px solid #e2e8f0;
         }
-
         th {
             padding: 1.2rem 1rem;
             text-align: left;
@@ -154,23 +127,14 @@
             font-size: 0.8rem;
             letter-spacing: 0.05em;
         }
-
         td {
             padding: 1rem;
             border-bottom: 1px solid #eef2f6;
             color: #0f172a;
             vertical-align: middle;
         }
-
-        tbody tr {
-            transition: background 0.15s;
-        }
-
-        tbody tr:hover {
-            background: #f8fafc;
-        }
-
-        /* ===== BOTÕES DE AÇÃO NA TABELA ===== */
+        tbody tr { transition: background 0.15s; }
+        tbody tr:hover { background: #f8fafc; }
         .btn-sm {
             padding: 0.4rem 1rem;
             font-size: 0.8rem;
@@ -181,106 +145,61 @@
             align-items: center;
             gap: 0.3rem;
         }
-
-        .btn-info {
-            background: #0ea5e9;
-            color: white;
-        }
-        .btn-info:hover {
-            background: #0284c7;
-            transform: translateY(-1px);
-        }
-
-        .btn-warning {
-            background: #f59e0b;
-            color: white;
-        }
-        .btn-warning:hover {
-            background: #d97706;
-            transform: translateY(-1px);
-        }
-
-        .btn-danger {
-            background: #ef4444;
-            color: white;
-        }
-        .btn-danger:hover {
-            background: #dc2626;
-            transform: translateY(-1px);
-        }
-
-        /* ===== LOADING ===== */
+        .btn-info { background: #0ea5e9; color: white; }
+        .btn-info:hover { background: #0284c7; transform: translateY(-1px); }
+        .btn-warning { background: #f59e0b; color: white; }
+        .btn-warning:hover { background: #d97706; transform: translateY(-1px); }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-danger:hover { background: #dc2626; transform: translateY(-1px); }
         .loading-row td {
             text-align: center;
             padding: 2rem;
             color: #64748b;
             font-weight: 500;
         }
-
         .loading-row i {
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: #3b82f6;
         }
-
-        /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 768px) {
-            .container {
-                padding: 2rem 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            td, th {
-                padding: 0.9rem 0.6rem;
-            }
-            .btn-sm {
-                padding: 0.3rem 0.7rem;
-                margin-right: 0.2rem;
-            }
+            .container { padding: 2rem 1.2rem; }
+            h1 { font-size: 1.8rem; }
+            td, th { padding: 0.9rem 0.6rem; }
+            .btn-sm { padding: 0.3rem 0.7rem; margin-right: 0.2rem; }
         }
-
         @media (max-width: 550px) {
-            .btn {
-                width: 100%;
-                margin-bottom: 1rem;
-            }
-            table {
-                font-size: 0.85rem;
-            }
-            .btn-sm {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.75rem;
-            }
+            .btn { width: 100%; margin-bottom: 1rem; }
+            table { font-size: 0.85rem; }
+            .btn-sm { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Alunos</h1>
+        <h1>Lista de Escolas</h1>
         
-        <a href="/alunos/create" class="btn btn-primary">
-            <i class="fas fa-plus-circle"></i> Cadastrar Novo Aluno
+        <a href="/escolas/create" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> Cadastrar Nova Escola
         </a>
         
         <div class="table-responsive">
-            <table id="tabelaAlunos">
+            <table id="tabelaEscolas">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Cidade</th>
-                        <th>CPF</th>
+                        <th>CNPJ</th>
                         <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Linha de carregamento será exibida enquanto busca dados -->
                     <tr class="loading-row">
                         <td colspan="6">
                             <i class="fas fa-spinner fa-pulse"></i><br>
-                            Carregando alunos...
+                            Carregando escolas...
                         </td>
                     </tr>
                 </tbody>
@@ -289,59 +208,55 @@
     </div>
 
     <script>
-        // ========== FUNCIONALIDADE ORIGINAL PRESERVADA ==========
-        // Função para carregar todos os alunos
-        function carregarAlunos() {
-            fetch('/api/alunos')
+        function carregarEscolas() {
+            fetch('/api/escolas')
                 .then(response => response.json())
-                .then(alunos => {
-                    const tbody = document.querySelector('#tabelaAlunos tbody');
+                .then(escolas => {
+                    const tbody = document.querySelector('#tabelaEscolas tbody');
                     tbody.innerHTML = '';
                     
-                    alunos.forEach(aluno => {
+                    escolas.forEach(escola => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = `
-                            <td>${aluno.id}</td>
-                            <td>${aluno.nome}</td>
-                            <td>${aluno.cidade}</td>
-                            <td>${aluno.cpf}</td>
-                            <td>${aluno.email}</td>
+                            <td>${escola.id}</td>
+                            <td>${escola.nome}</td>
+                            <td>${escola.cidade}</td>
+                            <td>${escola.cnpj}</td>
+                            <td>${escola.email}</td>
                             <td>
-                                <a href="/alunos/${aluno.id}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> Ver</a>
-                                <a href="/alunos/${aluno.id}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
-                                <button onclick="confirmarExclusao(${aluno.id})" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
+                                <a href="/escolas/${escola.id}" class="btn btn-sm btn-info"><i class="fas fa-eye"></i> Ver</a>
+                                <a href="/escolas/${escola.id}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Editar</a>
+                                <button onclick="confirmarExclusao(${escola.id})" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Excluir</button>
                             </td>
                         `;
                         tbody.appendChild(tr);
                     });
                 })
                 .catch(error => {
-                    console.error('Erro ao carregar alunos:', error);
-                    const tbody = document.querySelector('#tabelaAlunos tbody');
+                    console.error('Erro ao carregar escolas:', error);
+                    const tbody = document.querySelector('#tabelaEscolas tbody');
                     tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #991b1b;"><i class="fas fa-exclamation-triangle"></i><br>Erro ao carregar dados.</td></tr>';
                 });
         }
         
-        // Função para excluir aluno
         function confirmarExclusao(id) {
-            if (confirm('Tem certeza que deseja excluir este aluno?')) {
-                fetch(`/api/alunos/${id}`, {
+            if (confirm('Tem certeza que deseja excluir esta escola?')) {
+                fetch(`/api/escolas/${id}`, {
                     method: 'DELETE'
                 })
                 .then(response => response.json())
                 .then(data => {
                     alert(data.mensagem);
-                    carregarAlunos();
+                    carregarEscolas();
                 })
                 .catch(error => {
                     console.error('Erro ao excluir:', error);
-                    alert('Erro ao excluir aluno.');
+                    alert('Erro ao excluir escola.');
                 });
             }
         }
         
-        // Carregar alunos quando a página carregar
-        window.onload = carregarAlunos;
+        window.onload = carregarEscolas;
     </script>
 </body>
 </html>
