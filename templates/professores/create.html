@@ -203,7 +203,8 @@
                 email: document.getElementById('email').value
             };
             
-            fetch('/api/professores', {
+            // fetch('/api/professores', {
+            fetch('http://127.0.0.1:5000/api/professores', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(professor)

@@ -1,8 +1,14 @@
 # Arquivo de rotas (tipo Laravel routes/web.php)
 from controllers.AlunoController import AlunoController
+from controllers.ProfessorController import ProfessorController
+from controllers.DisciplinaController import DisciplinaController
+# from EscolaController import EscolaController
 
 # Instanciar o controller
 aluno_controller = AlunoController()
+professor_controller = ProfessorController()
+disciplina_controller = DisciplinaController()
+# escola_controller = EscolaController()
 
 def registrar_rotas(app):
     
@@ -12,9 +18,15 @@ def registrar_rotas(app):
     app.add_url_rule('/alunos/<int:id>', 'alunos.show', aluno_controller.show)
     app.add_url_rule('/alunos/<int:id>/edit', 'alunos.edit', aluno_controller.edit)
     
+    #Rotas de paginas de profs
+    app.add_url_rule('/professores/create', 'professores.create', professor_controller.create)
     # Rotas da API (JSON)
     app.add_url_rule('/api/alunos', 'api.alunos.index', aluno_controller.listar, methods=['GET'])
     app.add_url_rule('/api/alunos', 'api.alunos.store', aluno_controller.store, methods=['POST'])
     app.add_url_rule('/api/alunos/<int:id>', 'api.alunos.show', aluno_controller.buscar, methods=['GET'])
     app.add_url_rule('/api/alunos/<int:id>', 'api.alunos.update', aluno_controller.update, methods=['PUT'])
     app.add_url_rule('/api/alunos/<int:id>', 'api.alunos.destroy', aluno_controller.destroy, methods=['DELETE'])
+
+# Rotas da API para profs
+    app.add_url_rule('/api/professores', 'api.professores.store', professor_controller.store, methods=['POST'])
+    app.add_url_rule('/api/professores', 'api.professores.index', professor_controller.listar, methods=['GET'])

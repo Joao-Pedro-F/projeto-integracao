@@ -1,9 +1,13 @@
 # Arquivo principal da aplicação (tipo Laravel)
 from flask import Flask
+from flask_cors import CORS
 from routes.web import registrar_rotas
 
 # Criar aplicação Flask
 app = Flask(__name__)
+
+
+CORS(app)
 
 # Registrar todas as rotas
 registrar_rotas(app)
