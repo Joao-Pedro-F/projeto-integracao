@@ -3,51 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Aluno</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Matricular Aluno | EduControl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --white: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-main);
+        }
+
+        .container {
+            background: var(--white);
+            width: 100%;
+            max-width: 600px;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .header-form {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-form i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .header-form h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+        }
+
+        .header-form p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Grid do Formulário */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        label i { color: var(--primary); font-size: 0.9rem; }
+
+        input {
+            padding: 0.75rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            outline: none;
+            background: #fdfdfd;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        /* Botões */
+        .actions {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-success {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--text-muted);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            color: var(--text-main);
+        }
+
+        @media (max-width: 480px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .actions { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>Cadastrar Novo Aluno</h1>
+        <div class="header-form">
+            <i class="fas fa-user-plus"></i>
+            <h1>Novo Aluno</h1>
+            <p>Preencha os dados para realizar a matrícula no sistema.</p>
+        </div>
         
         <form id="formCadastro">
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
+                    <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cpf"><i class="fas fa-id-card"></i> CPF</label>
+                    <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="aluno@escola.com" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço</label>
+                    <input type="text" id="endereco" name="endereco" placeholder="Rua, número e bairro" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cidade"><i class="fas fa-city"></i> Cidade</label>
+                    <input type="text" id="cidade" name="cidade" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pais"><i class="fas fa-globe"></i> País</label>
+                    <input type="text" id="pais" name="pais" value="Brasil" required>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="endereco" name="endereco" required>
+
+            <div class="actions">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-check"></i> Finalizar Matrícula
+                </button>
+                <a href="/" class="btn btn-secondary">
+                    <i class="fas fa-chevron-left"></i> Voltar
+                </a>
             </div>
-            
-            <div class="form-group">
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade" name="cidade" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="pais">País:</label>
-                <input type="text" id="pais" name="pais" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <button type="submit" class="btn btn-success">Cadastrar</button>
-            <a href="/" class="btn btn-secondary">Voltar</a>
         </form>
     </div>
 
     <script>
-        // Função para cadastrar aluno
         document.getElementById('formCadastro').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -60,26 +228,24 @@
                 email: document.getElementById('email').value
             };
             
-            //fetch('/api/alunos', {
+            // Enviando para o seu servidor Flask na porta 5000
             fetch('http://127.0.0.1:5000/api/alunos', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(aluno)
             })
             .then(response => response.json())
             .then(data => {
                 if (data.erro) {
-                    alert('Erro ao cadastrar: ' + data.erro);
+                    alert('Erro: ' + data.erro);
                 } else {
-                    alert(data.mensagem);
-                    window.location.href = '/';
+                    alert('✅ ' + data.mensagem);
+                    window.location.href = '/'; // Volta para a Home
                 }
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Erro ao cadastrar aluno. Verifique o console para mais detalhes.');
+                alert('Erro ao conectar com o servidor. Verifique se o Flask está rodando.');
             });
         });
     </script>

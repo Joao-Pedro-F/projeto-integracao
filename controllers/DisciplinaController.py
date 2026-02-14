@@ -44,24 +44,91 @@ class DisciplinaController:
     
     # SHOW - Exibir detalhes de uma disciplina
     def show(self, id):
-        pass
+        return render_template('disciplinas/show.html')
     
     # EDIT - Exibir formulário de edição
     def edit(self, id):
-        pass
+        return render_template('disciplinas/edit.html')
     
     # UPDATE - Atualizar disciplina no banco
     def update(self, id):
-        pass
+        dados= request.get_json()
+        banco=None
+
+        try:
+            banco=conectar()
+            cursor=banco.cursor()
+            sql='''UPDATE disciplina SET nome=%s, carga_horaria=%s, descricao=%s WHERE id=%s'''
+            valores=(
+                dados['nome'],
+                dados['carga_horaria'],
+                dados['descricao'],
+                id
+            )
+            cursor.execute(sql,valores)
+            banco.commit()
+            cursor.close()
+            return jsonify({'mensagem':'Disciplina atualizada com sucesso'})
+        
+        except Exception as e:
+            if banco:
+                banco.rollback()
+                return jsonify({'erro':str(e)}),500
+        
+        finally:
+            if banco:
+                banco.close()
     
     # DESTROY - Deletar disciplina do banco
     def destroy(self, id):
-        pass
+        banco=None
+        try:
+            banco=conectar()
+            cursor=banco.cursor()
+            cursor.execute('DELETE FROM disciplina WHERE id= %s',(id,))
+            banco.commit()
+            cursor.close()
+            return jsonify({'mensagem':'Disciplina deletada com sucesso'})
+        
+        except Exception as e:
+            if banco:
+                banco.rollback()
+                return jsonify({'erro':str(e)}),500
+        
+        finally:
+            if banco:
+                banco.close()
+            
+        
     
     # API - Listar todas as disciplinas
     def listar(self):
-        pass
+        banco=conectar()
+        socorro=banco.cursor() #cursor para executar a consulta
+        socorro.execute('SELECT * FROM disciplina') #executar a consulta
+        porque_tantos_bugs=[desc[0] for desc in socorro.description] #obter os nomes das colunas
+        confundi_todos_os_nomes=socorro.fetchall() #obter os dados
+        disciplinas=[dict(zip(porque_tantos_bugs,row)) for row in confundi_todos_os_nomes] #combinar colunas e dados em dicionários
+        socorro.close()
+        banco.close()
+        return jsonify(disciplinas) 
+
+
     
     # API - Buscar uma disciplina específica
     def buscar(self, id):
-        pass
+        banco=conectar()
+        cursor=banco.cursor()
+        cursor.execute('SELECT * FROM disciplina WHERE id=%s',(id,))
+        resultado=cursor.fetchone()
+
+        if resultado:
+            colunas=[desc[0] for desc in cursor.description]
+            disciplinas= dict(zip(colunas,resultado))
+        else:
+            disciplinas=None
+        
+        cursor.close()
+        banco.close()
+        return jsonify(disciplinas)
+        

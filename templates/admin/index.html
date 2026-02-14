@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduControl | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg-main: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --sidebar-w: 260px;
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background 0.3s, border-color 0.3s; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-main); color: var(--text-main); display: flex; }
+
+        /* Sidebar */
+        aside {
+            width: var(--sidebar-w); background: var(--bg-card); border-right: 1px solid var(--border);
+            height: 100vh; position: fixed; padding: 2rem; display: flex; flex-direction: column;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 2rem; display: flex; align-items: center; gap: 10px; }
+        
+        /* Botão Dark Mode */
+        .theme-switch {
+            background: var(--bg-main); border: 1px solid var(--border); padding: 10px; border-radius: 12px;
+            cursor: pointer; color: var(--text-main); font-weight: 600; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px;
+        }
+
+        nav a { text-decoration: none; color: var(--text-muted); padding: 12px; display: flex; align-items: center; gap: 12px; border-radius: 10px; font-weight: 500; margin-bottom: 5px; }
+        nav a.active, nav a:hover { background: var(--primary); color: white; }
+
+        /* Main Content */
+        main { margin-left: var(--sidebar-w); flex: 1; padding: 3rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .stat-card { background: var(--bg-card); padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .stat-card i { font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; }
+        .stat-card h3 { font-size: 0.9rem; color: var(--text-muted); }
+        .stat-card p { font-size: 1.8rem; font-weight: 700; }
+
+        table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 20px; overflow: hidden; margin-top: 2rem; border: 1px solid var(--border); }
+        th { text-align: left; padding: 15px; background: var(--bg-main); color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
+        td { padding: 15px; border-bottom: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class="logo"><i class="fas fa-graduation-cap"></i> EduControl</div>
+        <button class="theme-switch" id="themeBtn">
+            <i class="fas fa-moon"></i> <span id="themeTxt">Modo Escuro</span>
+        </button>
+        <nav>
+            <a href="/" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="/cadastrar"><i class="fas fa-user-plus"></i> Novo Aluno</a>
+        </nav>
+    </aside>
+    <main>
+        <h1>Bem-vindo ao Painel</h1>
+        <div class="stats-grid">
+            <div class="stat-card"><i class="fas fa-users"></i><h3>Alunos</h3><p id="totalAlunos">--</p></div>
+            <div class="stat-card"><i class="fas fa-chalkboard-user"></i><h3>Professores</h3><p>42</p></div>
+            <div class="stat-card"><i class="fas fa-school"></i><h3>Escolas</h3><p>08</p></div>
+        </div>
+        <table>
+            <thead><tr><th>Nome</th><th>Email</th><th>Cidade</th></tr></thead>
+            <tbody id="listaRecentes"></tbody>
+        </table>
+    </main>
+
+    <script>
+        // Lógica de Tema
+        const btn = document.getElementById('themeBtn');
+        const body = document.body;
+        const txt = document.getElementById('themeTxt');
+
+        if(localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            txt.innerText = 'Modo Claro';
+        }
+
+        btn.onclick = () => {
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            txt.innerText = isDark ? 'Modo Escuro' : 'Modo Claro';
+        };
+
+        // Carregar Dados Fictícios/Reais
+        fetch('/api/alunos') // Supondo sua rota de listagem
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('totalAlunos').innerText = data.length;
+                const html = data.slice(0, 5).map(a => `<tr><td>${a.nome}</td><td>${a.email}</td><td>${a.cidade}</td></tr>`).join('');
+                document.getElementById('listaRecentes').innerHTML = html;
+            });
+    </script>
+</body>
+</html>
