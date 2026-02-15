@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +75,7 @@
         }
 
         h1::before {
-            content: "\f51c"; /* ícone de professor (chapéu) */
+            content: "\f51c"; /* Ã­cone de professor (chapÃ©u) */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -232,6 +232,7 @@
             .btn-sm { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -247,7 +248,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Cidade</th>
+                        <th>Telefone</th>
                         <th>CPF</th>
                         <th>Email</th>
                         <th>Ações</th>
@@ -278,7 +279,7 @@
                         tr.innerHTML = `
                             <td>${professor.id}</td>
                             <td>${professor.nome}</td>
-                            <td>${professor.cidade}</td>
+                            <td>${professor.telefone}</td>
                             <td>${professor.cpf}</td>
                             <td>${professor.email}</td>
                             <td>
@@ -316,5 +317,8 @@
         
         window.onload = carregarProfessores;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -66,7 +66,7 @@
             margin-top: 0.5rem;
         }
 
-        /* Grid do Formulário */
+        /* Grid do FormulÃ¡rio */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -109,7 +109,7 @@
             box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
         }
 
-        /* Botões */
+        /* BotÃµes */
         .actions {
             margin-top: 2rem;
             display: flex;
@@ -161,6 +161,7 @@
             .actions { flex-direction: column; }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
 
@@ -168,14 +169,14 @@
         <div class="header-form">
             <i class="fas fa-user-plus"></i>
             <h1>Novo Aluno</h1>
-            <p>Preencha os dados para realizar a matrícula no sistema.</p>
+            <p>Preencha os dados para realizar a matrÃ­cula no sistema.</p>
         </div>
         
         <form id="formCadastro">
             <div class="form-grid">
                 <div class="form-group full-width">
                     <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
-                    <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+                    <input type="text" id="nome" name="nome" placeholder="Ex: JoÃ£o Silva" required>
                 </div>
                 
                 <div class="form-group">
@@ -189,8 +190,8 @@
                 </div>
 
                 <div class="form-group full-width">
-                    <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço</label>
-                    <input type="text" id="endereco" name="endereco" placeholder="Rua, número e bairro" required>
+                    <label for="endereco"><i class="fas fa-map-marker-alt"></i> EndereÃ§o</label>
+                    <input type="text" id="endereco" name="endereco" placeholder="Rua, nÃºmero e bairro" required>
                 </div>
 
                 <div class="form-group">
@@ -199,16 +200,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="pais"><i class="fas fa-globe"></i> País</label>
+                    <label for="pais"><i class="fas fa-globe"></i> PaÃ­s</label>
                     <input type="text" id="pais" name="pais" value="Brasil" required>
                 </div>
             </div>
 
             <div class="actions">
                 <button type="submit" class="btn btn-success">
-                    <i class="fas fa-check"></i> Finalizar Matrícula
+                    <i class="fas fa-check"></i> Finalizar MatrÃ­cula
                 </button>
-                <a href="/" class="btn btn-secondary">
+                <a href="/alunos" class="btn btn-secondary">
                     <i class="fas fa-chevron-left"></i> Voltar
                 </a>
             </div>
@@ -228,8 +229,7 @@
                 email: document.getElementById('email').value
             };
             
-            // Enviando para o seu servidor Flask na porta 5000
-            fetch('http://127.0.0.1:5000/api/alunos', {
+            fetch('/api/alunos', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(aluno)
@@ -239,15 +239,18 @@
                 if (data.erro) {
                     alert('Erro: ' + data.erro);
                 } else {
-                    alert('✅ ' + data.mensagem);
-                    window.location.href = '/'; // Volta para a Home
+                    alert('âœ… ' + data.mensagem);
+                    window.location.href = '/alunos';
                 }
             })
             .catch(error => {
                 console.error('Erro:', error);
-                alert('Erro ao conectar com o servidor. Verifique se o Flask está rodando.');
+                alert('Erro ao conectar com o servidor. Verifique se o Flask estÃ¡ rodando.');
             });
         });
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

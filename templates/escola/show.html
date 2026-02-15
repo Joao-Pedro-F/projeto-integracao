@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -184,6 +184,7 @@
             .btn { width: 100%; margin-right: 0; margin-bottom: 0.75rem; }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -191,17 +192,14 @@
         
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados da escola...</span>
+            <span>â³ Carregando dados da escola...</span>
         </div>
         
         <div id="detalhesEscola" class="detalhes" style="display: none;">
             <p><strong><i class="fas fa-hashtag"></i> ID</strong> <span id="id"></span></p>
             <p><strong><i class="fas fa-school"></i> Nome</strong> <span id="nome"></span></p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Endereço</strong> <span id="endereco"></span></p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> EndereÃ§o</strong> <span id="endereco"></span></p>
             <p><strong><i class="fas fa-city"></i> Cidade</strong> <span id="cidade"></span></p>
-            <p><strong><i class="fas fa-globe"></i> País</strong> <span id="pais"></span></p>
-            <p><strong><i class="fas fa-id-card"></i> CNPJ</strong> <span id="cnpj"></span></p>
-            <p><strong><i class="fas fa-envelope"></i> Email</strong> <span id="email"></span></p>
             <p><strong><i class="fas fa-phone"></i> Telefone</strong> <span id="telefone"></span></p>
         </div>
         
@@ -231,19 +229,16 @@
                         document.getElementById('nome').textContent = escola.nome || '';
                         document.getElementById('endereco').textContent = escola.endereco || '';
                         document.getElementById('cidade').textContent = escola.cidade || '';
-                        document.getElementById('pais').textContent = escola.pais || '';
-                        document.getElementById('cnpj').textContent = escola.cnpj || '';
-                        document.getElementById('email').textContent = escola.email || '';
                         document.getElementById('telefone').textContent = escola.telefone || '';
                     } else {
-                        alert('Escola não encontrada!');
+                        alert('Escola nÃ£o encontrada!');
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar escola:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
-                        <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
+                        <span style="color: #991b1b;">âŒ Erro ao carregar dados!</span>
                     `;
                 });
         }
@@ -254,5 +249,8 @@
         
         window.onload = carregarEscola;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

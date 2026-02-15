@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +75,7 @@
         }
 
         h1::before {
-            content: "\f007"; /* ícone de usuário */
+            content: "\f007"; /* Ã­cone de usuÃ¡rio */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -117,7 +117,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Área de detalhes do aluno */
+        /* Ãrea de detalhes do aluno */
         .detalhes {
             background: #f8fafc;
             border-radius: 24px;
@@ -171,7 +171,7 @@
             word-break: break-word;
         }
 
-        /* Botões */
+        /* BotÃµes */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -258,6 +258,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -266,23 +267,23 @@
         <!-- Loading com spinner animado -->
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados do aluno...</span>
+            <span>â³ Carregando dados do aluno...</span>
         </div>
         
-        <!-- Área de detalhes (inicialmente oculta) -->
+        <!-- Ãrea de detalhes (inicialmente oculta) -->
         <div id="detalhesAluno" class="detalhes" style="display: none;">
             <p><strong><i class="fas fa-hashtag"></i> ID</strong> <span id="id"></span></p>
             <p><strong><i class="fas fa-user"></i> Nome</strong> <span id="nome"></span></p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Endereço</strong> <span id="endereco"></span></p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> EndereÃ§o</strong> <span id="endereco"></span></p>
             <p><strong><i class="fas fa-city"></i> Cidade</strong> <span id="cidade"></span></p>
-            <p><strong><i class="fas fa-globe"></i> País</strong> <span id="pais"></span></p>
+            <p><strong><i class="fas fa-globe"></i> PaÃ­s</strong> <span id="pais"></span></p>
             <p><strong><i class="fas fa-id-card"></i> CPF</strong> <span id="cpf"></span></p>
             <p><strong><i class="fas fa-envelope"></i> Email</strong> <span id="email"></span></p>
         </div>
         
-        <!-- Botões de ação -->
+        <!-- BotÃµes de aÃ§Ã£o -->
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
-            <a href="/" class="btn btn-secondary">
+            <a href="/alunos" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Voltar
             </a>
             <a href="#" onclick="editarAluno()" class="btn btn-warning">
@@ -292,12 +293,12 @@
     </div>
 
     <script>
-        // ========== CÓDIGO ORIGINAL PRESERVADO ==========
+        // ========== CÃ“DIGO ORIGINAL PRESERVADO ==========
         // Pegar o ID da URL
         const url = window.location.pathname;
         const id = url.split('/')[2];
         
-        // Função para carregar dados do aluno
+        // FunÃ§Ã£o para carregar dados do aluno
         function carregarAluno() {
             fetch(`/api/alunos/${id}`)
                 .then(response => response.json())
@@ -317,25 +318,28 @@
                         document.getElementById('cpf').textContent = aluno.cpf || '';
                         document.getElementById('email').textContent = aluno.email || '';
                     } else {
-                        alert('Aluno não encontrado!');
+                        alert('Aluno nÃ£o encontrado!');
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar aluno:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
-                        <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
+                        <span style="color: #991b1b;">âŒ Erro ao carregar dados!</span>
                     `;
                 });
         }
         
-        // Redirecionar para edição
+        // Redirecionar para ediÃ§Ã£o
         function editarAluno() {
             window.location.href = `/alunos/${id}/edit`;
         }
         
-        // Carregar aluno quando a página carregar
+        // Carregar aluno quando a pÃ¡gina carregar
         window.onload = carregarAluno;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

@@ -64,16 +64,21 @@
             <i class="fas fa-moon"></i> <span id="themeTxt">Modo Escuro</span>
         </button>
         <nav>
-            <a href="/" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
-            <a href="/cadastrar"><i class="fas fa-user-plus"></i> Novo Aluno</a>
+            <a href="/admin" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="/alunos"><i class="fas fa-users"></i> Alunos</a>
+            <a href="/professores"><i class="fas fa-chalkboard-user"></i> Professores</a>
+            <a href="/disciplinas"><i class="fas fa-book"></i> Disciplinas</a>
+            <a href="/escolas"><i class="fas fa-school"></i> Escolas</a>
+            <a href="/alunos/create"><i class="fas fa-user-plus"></i> Novo Aluno</a>
         </nav>
     </aside>
     <main>
         <h1>Bem-vindo ao Painel</h1>
         <div class="stats-grid">
             <div class="stat-card"><i class="fas fa-users"></i><h3>Alunos</h3><p id="totalAlunos">--</p></div>
-            <div class="stat-card"><i class="fas fa-chalkboard-user"></i><h3>Professores</h3><p>42</p></div>
-            <div class="stat-card"><i class="fas fa-school"></i><h3>Escolas</h3><p>08</p></div>
+            <div class="stat-card"><i class="fas fa-chalkboard-user"></i><h3>Professores</h3><p id="totalProfessores">--</p></div>
+            <div class="stat-card"><i class="fas fa-school"></i><h3>Escolas</h3><p id="totalEscolas">--</p></div>
+            <div class="stat-card"><i class="fas fa-book"></i><h3>Disciplinas</h3><p id="totalDisciplinas">--</p></div>
         </div>
         <table>
             <thead><tr><th>Nome</th><th>Email</th><th>Cidade</th></tr></thead>
@@ -99,13 +104,27 @@
             txt.innerText = isDark ? 'Modo Escuro' : 'Modo Claro';
         };
 
-        // Carregar Dados Fictícios/Reais
-        fetch('/api/alunos') // Supondo sua rota de listagem
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('totalAlunos').innerText = data.length;
-                const html = data.slice(0, 5).map(a => `<tr><td>${a.nome}</td><td>${a.email}</td><td>${a.cidade}</td></tr>`).join('');
-                document.getElementById('listaRecentes').innerHTML = html;
+        // Carregar dados do dashboard
+        Promise.all([
+            fetch('/api/alunos').then(res => res.json()),
+            fetch('/api/professores').then(res => res.json()),
+            fetch('/api/escolas').then(res => res.json()),
+            fetch('/api/disciplinas').then(res => res.json())
+        ])
+            .then(([alunos, professores, escolas, disciplinas]) => {
+                document.getElementById('totalAlunos').innerText = alunos.length;
+                document.getElementById('totalProfessores').innerText = professores.length;
+                document.getElementById('totalEscolas').innerText = escolas.length;
+                document.getElementById('totalDisciplinas').innerText = disciplinas.length;
+
+                const html = alunos
+                    .slice(0, 5)
+                    .map(a => `<tr><td>${a.nome || ''}</td><td>${a.email || ''}</td><td>${a.cidade || ''}</td></tr>`)
+                    .join('');
+                document.getElementById('listaRecentes').innerHTML = html || '<tr><td colspan="3">Sem registros.</td></tr>';
+            })
+            .catch(() => {
+                document.getElementById('listaRecentes').innerHTML = '<tr><td colspan="3">Erro ao carregar dados.</td></tr>';
             });
     </script>
 </body>

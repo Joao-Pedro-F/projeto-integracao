@@ -1,0 +1,111 @@
+/* Global dark mode for CRUD pages */
+.theme-switch-floating {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #0f172a;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(2, 6, 23, 0.12);
+}
+
+.theme-switch-floating:hover {
+    transform: translateY(-1px);
+}
+
+body[data-theme="dark"] {
+    background: linear-gradient(145deg, #0b1220 0%, #111827 100%) !important;
+    color: #e5e7eb !important;
+}
+
+body[data-theme="dark"] .container {
+    background: #111827 !important;
+    border-color: #1f2937 !important;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.45), 0 8px 16px -6px rgba(0, 0, 0, 0.25) !important;
+}
+
+body[data-theme="dark"] h1 {
+    color: #f8fafc !important;
+    border-bottom-color: #334155 !important;
+}
+
+body[data-theme="dark"] label {
+    color: #cbd5e1 !important;
+}
+
+body[data-theme="dark"] input,
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] select {
+    background: #0f172a !important;
+    color: #e5e7eb !important;
+    border-color: #334155 !important;
+}
+
+body[data-theme="dark"] input::placeholder,
+body[data-theme="dark"] textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+body[data-theme="dark"] table {
+    background: #0f172a !important;
+}
+
+body[data-theme="dark"] thead tr {
+    background: #111827 !important;
+    border-bottom-color: #334155 !important;
+}
+
+body[data-theme="dark"] th {
+    color: #93c5fd !important;
+}
+
+body[data-theme="dark"] td {
+    color: #e5e7eb !important;
+    border-bottom-color: #1f2937 !important;
+}
+
+body[data-theme="dark"] tbody tr:hover {
+    background: #111827 !important;
+}
+
+body[data-theme="dark"] .btn-secondary {
+    background: #0f172a !important;
+    color: #e5e7eb !important;
+    border-color: #334155 !important;
+}
+
+body[data-theme="dark"] .btn-secondary:hover {
+    background: #1e293b !important;
+    border-color: #475569 !important;
+}
+
+body[data-theme="dark"] #loading,
+body[data-theme="dark"] .detalhes {
+    background: #0f172a !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+}
+
+body[data-theme="dark"] .detalhes strong {
+    color: #cbd5e1 !important;
+}
+
+body[data-theme="dark"] .detalhes span {
+    background: #111827 !important;
+    color: #f8fafc !important;
+}
+
+body[data-theme="dark"] .theme-switch-floating {
+    background: #0f172a !important;
+    color: #e5e7eb !important;
+    border-color: #334155 !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+}

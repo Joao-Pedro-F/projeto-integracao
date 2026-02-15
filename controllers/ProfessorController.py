@@ -50,12 +50,6 @@ class ProfessorController:
             if banco:
                 banco.close()
     
-   
-
-    
-   
-    
-    
     
     # SHOW - Exibir detalhes de um professor
     def show(self, id):
@@ -72,7 +66,7 @@ class ProfessorController:
 
         try:
             banco=conectar()
-            cursor=banco.cursors()
+            cursor=banco.cursor()
             sql='''UPDATE professor
                     SET nome=%s,cpf=%s,email=%s,telefone=%s,especialidade=%s
                     WHERE id=%s'''

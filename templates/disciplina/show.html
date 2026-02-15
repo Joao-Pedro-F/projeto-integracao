@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -184,6 +184,7 @@
             .btn { width: 100%; margin-right: 0; margin-bottom: 0.75rem; }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -191,16 +192,14 @@
         
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados da disciplina...</span>
+            <span>â³ Carregando dados da disciplina...</span>
         </div>
         
         <div id="detalhesDisciplina" class="detalhes" style="display: none;">
             <p><strong><i class="fas fa-hashtag"></i> ID</strong> <span id="id"></span></p>
             <p><strong><i class="fas fa-book"></i> Nome</strong> <span id="nome"></span></p>
-            <p><strong><i class="fas fa-barcode"></i> Código</strong> <span id="codigo"></span></p>
-            <p><strong><i class="fas fa-clock"></i> Carga Horária</strong> <span id="carga_horaria"></span></p>
-            <p><strong><i class="fas fa-chalkboard-teacher"></i> Professor</strong> <span id="professor"></span></p>
-            <p><strong><i class="fas fa-align-left"></i> Descrição</strong> <span id="descricao"></span></p>
+            <p><strong><i class="fas fa-clock"></i> Carga HorÃ¡ria</strong> <span id="carga_horaria"></span></p>
+            <p><strong><i class="fas fa-align-left"></i> DescriÃ§Ã£o</strong> <span id="descricao"></span></p>
         </div>
         
         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
@@ -227,19 +226,17 @@
                         
                         document.getElementById('id').textContent = disciplina.id || '';
                         document.getElementById('nome').textContent = disciplina.nome || '';
-                        document.getElementById('codigo').textContent = disciplina.codigo || '';
                         document.getElementById('carga_horaria').textContent = disciplina.carga_horaria || '';
-                        document.getElementById('professor').textContent = disciplina.professor || '';
                         document.getElementById('descricao').textContent = disciplina.descricao || '';
                     } else {
-                        alert('Disciplina não encontrada!');
+                        alert('Disciplina nÃ£o encontrada!');
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar disciplina:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
-                        <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
+                        <span style="color: #991b1b;">âŒ Erro ao carregar dados!</span>
                     `;
                 });
         }
@@ -250,5 +247,8 @@
         
         window.onload = carregarDisciplina;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

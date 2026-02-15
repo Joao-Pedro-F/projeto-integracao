@@ -1,7 +1,22 @@
-antes apenas Edilberto e Deus sabiam como isso funciona, agora só Deus sabe
+//antes apenas Edilberto e Deus sabiam como isso funciona, agora só Deus sabe
 
-meu vscode tá que nem um semáforo,só tem vermelho e amarelo
+//meu vscode tá que nem um semáforo,só tem vermelho e amarelo
 
 
-//total de bugs que eu tentei resolver= 12
+//total de bugs que eu tentei resolver= 33 e meio porque começou a funcionar do nada
+
 //total de vezes que eu pensei em desistir de decifrar o código= eu desisti e deixei na mão de Deus para que ele continue funcionando.
+
+//No web.py nem eu sei oque fiz,entao nem me pergunte,só sei que deu certo. Provavelmente eu fiz um no plural e outro no singular pq nao me lembrava se tinha colocado 's' no final ou não, foi mal tava com sono na hora e deu preguiça
+
+//Front foi a IA que fez ai eu que me lasquei fazendo o resto do back e conenctando com o front que eu nao fiz
+
+Pai Nosso, que estais no Céu
+Santificado seja o vosso nome
+Venha a nós o vosso reino
+Seja feita a vossa vontade, assim na terra como no Céu.
+O pão nosso de cada dia nos dai hoje
+Perdoai-nos as nossas ofensas, assim como nós perdoamos a quem nos tem ofendido
+E não nos deixeis cair em tentação
+Mas livrai-nos do mal
+Amém.

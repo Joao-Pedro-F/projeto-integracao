@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
             z-index: 1;
         }
         h1::before {
-            content: "\f044"; /* lápis */
+            content: "\f044"; /* lÃ¡pis */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -173,6 +173,7 @@
             .btn { width: 100%; margin-right: 0; margin-bottom: 0.75rem; }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -180,7 +181,7 @@
         
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados do professor...</span>
+            <span>â³ Carregando dados do professor...</span>
         </div>
         
         <form id="formEdicao" style="display: none;">
@@ -191,16 +192,12 @@
                 <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
             </div>
             <div class="form-group">
-                <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço</label>
-                <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+                <label for="telefone"><i class="fas fa-phone"></i> Telefone</label>
+                <input type="text" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
             </div>
             <div class="form-group">
-                <label for="cidade"><i class="fas fa-city"></i> Cidade</label>
-                <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
-            </div>
-            <div class="form-group">
-                <label for="pais"><i class="fas fa-globe"></i> País</label>
-                <input type="text" id="pais" name="pais" placeholder="País" required>
+                <label for="especialidade"><i class="fas fa-book"></i> Especialidade</label>
+                <input type="text" id="especialidade" name="especialidade" placeholder="Materia/Area de atuacao" required>
             </div>
             <div class="form-group">
                 <label for="cpf"><i class="fas fa-id-card"></i> CPF</label>
@@ -236,20 +233,19 @@
                         
                         document.getElementById('id').value = professor.id || '';
                         document.getElementById('nome').value = professor.nome || '';
-                        document.getElementById('endereco').value = professor.endereco || '';
-                        document.getElementById('cidade').value = professor.cidade || '';
-                        document.getElementById('pais').value = professor.pais || '';
+                        document.getElementById('telefone').value = professor.telefone || '';
+                        document.getElementById('especialidade').value = professor.especialidade || '';
                         document.getElementById('cpf').value = professor.cpf || '';
                         document.getElementById('email').value = professor.email || '';
                     } else {
-                        alert('Professor não encontrado!');
+                        alert('Professor nÃ£o encontrado!');
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar professor:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
-                        <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
+                        <span style="color: #991b1b;">âŒ Erro ao carregar dados!</span>
                     `;
                 });
         }
@@ -259,9 +255,8 @@
             
             const professor = {
                 nome: document.getElementById('nome').value,
-                endereco: document.getElementById('endereco').value,
-                cidade: document.getElementById('cidade').value,
-                pais: document.getElementById('pais').value,
+                telefone: document.getElementById('telefone').value,
+                especialidade: document.getElementById('especialidade').value,
                 cpf: document.getElementById('cpf').value,
                 email: document.getElementById('email').value
             };
@@ -284,5 +279,8 @@
         
         window.onload = carregarProfessor;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

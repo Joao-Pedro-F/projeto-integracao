@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +75,7 @@
         }
 
         h1::before {
-            content: "\f0ca"; /* ícone de lista (tabela) */
+            content: "\f0ca"; /* Ã­cone de lista (tabela) */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -85,7 +85,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* ===== BOTÃO DE CADASTRO ===== */
+        /* ===== BOTÃƒO DE CADASTRO ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -170,7 +170,7 @@
             background: #f8fafc;
         }
 
-        /* ===== BOTÕES DE AÇÃO NA TABELA ===== */
+        /* ===== BOTÃ•ES DE AÃ‡ÃƒO NA TABELA ===== */
         .btn-sm {
             padding: 0.4rem 1rem;
             font-size: 0.8rem;
@@ -254,6 +254,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -276,7 +277,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Linha de carregamento será exibida enquanto busca dados -->
+                    <!-- Linha de carregamento serÃ¡ exibida enquanto busca dados -->
                     <tr class="loading-row">
                         <td colspan="6">
                             <i class="fas fa-spinner fa-pulse"></i><br>
@@ -290,7 +291,7 @@
 
     <script>
         // ========== FUNCIONALIDADE ORIGINAL PRESERVADA ==========
-        // Função para carregar todos os alunos
+        // FunÃ§Ã£o para carregar todos os alunos
         function carregarAlunos() {
             fetch('/api/alunos')
                 .then(response => response.json())
@@ -322,7 +323,7 @@
                 });
         }
         
-        // Função para excluir aluno
+        // FunÃ§Ã£o para excluir aluno
         function confirmarExclusao(id) {
             if (confirm('Tem certeza que deseja excluir este aluno?')) {
                 fetch(`/api/alunos/${id}`, {
@@ -340,8 +341,10 @@
             }
         }
         
-        // Carregar alunos quando a página carregar
+        // Carregar alunos quando a pÃ¡gina carregar
         window.onload = carregarAlunos;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+

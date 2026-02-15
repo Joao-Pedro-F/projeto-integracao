@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Reset e base - mesmo estilo das páginas anteriores */
+        /* Reset e base - mesmo estilo das pÃ¡ginas anteriores */
         * {
             margin: 0;
             padding: 0;
@@ -75,7 +75,7 @@
         }
 
         h1::before {
-            content: "\f044"; /* ícone de editar (lápis) */
+            content: "\f044"; /* Ã­cone de editar (lÃ¡pis) */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -117,7 +117,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Formulário de edição */
+        /* FormulÃ¡rio de ediÃ§Ã£o */
         #formEdicao {
             position: relative;
             z-index: 2;
@@ -175,7 +175,7 @@
             color: #2563eb;
         }
 
-        /* Botões */
+        /* BotÃµes */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -243,6 +243,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -251,10 +252,10 @@
         <!-- Loading com spinner animado -->
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados do aluno...</span>
+            <span>â³ Carregando dados do aluno...</span>
         </div>
         
-        <!-- Formulário de edição (inicialmente oculto) -->
+        <!-- FormulÃ¡rio de ediÃ§Ã£o (inicialmente oculto) -->
         <form id="formEdicao" style="display: none;">
             <input type="hidden" id="id" name="id">
             
@@ -264,8 +265,8 @@
             </div>
             
             <div class="form-group">
-                <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço</label>
-                <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+                <label for="endereco"><i class="fas fa-map-marker-alt"></i> EndereÃ§o</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Rua, nÃºmero, bairro" required>
             </div>
             
             <div class="form-group">
@@ -274,8 +275,8 @@
             </div>
             
             <div class="form-group">
-                <label for="pais"><i class="fas fa-globe"></i> País</label>
-                <input type="text" id="pais" name="pais" placeholder="País" required>
+                <label for="pais"><i class="fas fa-globe"></i> PaÃ­s</label>
+                <input type="text" id="pais" name="pais" placeholder="PaÃ­s" required>
             </div>
             
             <div class="form-group">
@@ -292,7 +293,7 @@
                 <button type="submit" class="btn btn-success">
                     <i class="fas fa-save"></i> Atualizar
                 </button>
-                <a href="/" class="btn btn-secondary">
+                <a href="/alunos" class="btn btn-secondary">
                     <i class="fas fa-times-circle"></i> Cancelar
                 </a>
             </div>
@@ -300,12 +301,12 @@
     </div>
 
     <script>
-        // ========== CÓDIGO ORIGINAL PRESERVADO ==========
+        // ========== CÃ“DIGO ORIGINAL PRESERVADO ==========
         // Pegar o ID da URL
         const url = window.location.pathname;
         const id = url.split('/')[2];
         
-        // Função para carregar dados do aluno
+        // FunÃ§Ã£o para carregar dados do aluno
         function carregarAluno() {
             fetch(`/api/alunos/${id}`)
                 .then(response => response.json())
@@ -313,7 +314,7 @@
                     console.log('Dados recebidos:', aluno);
                     
                     if (aluno) {
-                        // Esconder loading e mostrar formulário
+                        // Esconder loading e mostrar formulÃ¡rio
                         document.getElementById('loading').style.display = 'none';
                         document.getElementById('formEdicao').style.display = 'block';
                         
@@ -325,19 +326,19 @@
                         document.getElementById('cpf').value = aluno.cpf || '';
                         document.getElementById('email').value = aluno.email || '';
                     } else {
-                        alert('Aluno não encontrado!');
+                        alert('Aluno nÃ£o encontrado!');
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar aluno:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
-                        <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
+                        <span style="color: #991b1b;">âŒ Erro ao carregar dados!</span>
                     `;
                 });
         }
         
-        // Função para atualizar aluno
+        // FunÃ§Ã£o para atualizar aluno
         document.getElementById('formEdicao').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -360,7 +361,7 @@
             .then(response => response.json())
             .then(data => {
                 alert(data.mensagem);
-                window.location.href = '/';
+                window.location.href = '/alunos';
             })
             .catch(error => {
                 console.error('Erro ao atualizar:', error);
@@ -368,8 +369,11 @@
             });
         });
         
-        // Carregar aluno quando a página carregar
+        // Carregar aluno quando a pÃ¡gina carregar
         window.onload = carregarAluno;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

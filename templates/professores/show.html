@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
             z-index: 1;
         }
         h1::before {
-            content: "\f51c"; /* chapéu */
+            content: "\f51c"; /* chapÃ©u */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -184,6 +184,7 @@
             .btn { width: 100%; margin-right: 0; margin-bottom: 0.75rem; }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -191,15 +192,14 @@
         
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados do professor...</span>
+            <span>â³ Carregando dados do professor...</span>
         </div>
         
         <div id="detalhesProfessor" class="detalhes" style="display: none;">
             <p><strong><i class="fas fa-hashtag"></i> ID</strong> <span id="id"></span></p>
             <p><strong><i class="fas fa-user"></i> Nome</strong> <span id="nome"></span></p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Endereço</strong> <span id="endereco"></span></p>
-            <p><strong><i class="fas fa-city"></i> Cidade</strong> <span id="cidade"></span></p>
-            <p><strong><i class="fas fa-globe"></i> País</strong> <span id="pais"></span></p>
+            <p><strong><i class="fas fa-phone"></i> Telefone</strong> <span id="telefone"></span></p>
+            <p><strong><i class="fas fa-book"></i> Especialidade</strong> <span id="especialidade"></span></p>
             <p><strong><i class="fas fa-id-card"></i> CPF</strong> <span id="cpf"></span></p>
             <p><strong><i class="fas fa-envelope"></i> Email</strong> <span id="email"></span></p>
         </div>
@@ -228,20 +228,19 @@
                         
                         document.getElementById('id').textContent = professor.id || '';
                         document.getElementById('nome').textContent = professor.nome || '';
-                        document.getElementById('endereco').textContent = professor.endereco || '';
-                        document.getElementById('cidade').textContent = professor.cidade || '';
-                        document.getElementById('pais').textContent = professor.pais || '';
+                        document.getElementById('telefone').textContent = professor.telefone || '';
+                        document.getElementById('especialidade').textContent = professor.especialidade || '';
                         document.getElementById('cpf').textContent = professor.cpf || '';
                         document.getElementById('email').textContent = professor.email || '';
                     } else {
-                        alert('Professor não encontrado!');
+                        alert('Professor nÃ£o encontrado!');
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar professor:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
-                        <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
+                        <span style="color: #991b1b;">âŒ Erro ao carregar dados!</span>
                     `;
                 });
         }
@@ -252,5 +251,8 @@
         
         window.onload = carregarProfessor;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+

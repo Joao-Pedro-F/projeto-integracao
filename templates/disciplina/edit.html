@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
             z-index: 1;
         }
         h1::before {
-            content: "\f044"; /* lápis */
+            content: "\f044"; /* lÃ¡pis */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 1.8rem;
@@ -173,6 +173,7 @@
             .btn { width: 100%; margin-right: 0; margin-bottom: 0.75rem; }
         }
     </style>
+    <link rel="stylesheet" href="/static/theme.css">
 </head>
 <body>
     <div class="container">
@@ -180,7 +181,7 @@
         
         <div id="loading">
             <div class="spinner"></div>
-            <span>⏳ Carregando dados da disciplina...</span>
+            <span>â³ Carregando dados da disciplina...</span>
         </div>
         
         <form id="formEdicao" style="display: none;">
@@ -191,20 +192,12 @@
                 <input type="text" id="nome" name="nome" placeholder="Nome da disciplina" required>
             </div>
             <div class="form-group">
-                <label for="codigo"><i class="fas fa-barcode"></i> Código</label>
-                <input type="text" id="codigo" name="codigo" placeholder="Ex: MAT101" required>
-            </div>
-            <div class="form-group">
-                <label for="carga_horaria"><i class="fas fa-clock"></i> Carga Horária</label>
+                <label for="carga_horaria"><i class="fas fa-clock"></i> Carga HorÃ¡ria</label>
                 <input type="number" id="carga_horaria" name="carga_horaria" placeholder="Ex: 60" required>
             </div>
             <div class="form-group">
-                <label for="professor"><i class="fas fa-chalkboard-teacher"></i> Professor</label>
-                <input type="text" id="professor" name="professor" placeholder="Nome do professor responsável" required>
-            </div>
-            <div class="form-group">
-                <label for="descricao"><i class="fas fa-align-left"></i> Descrição</label>
-                <input type="text" id="descricao" name="descricao" placeholder="Breve descrição da disciplina" required>
+                <label for="descricao"><i class="fas fa-align-left"></i> DescriÃ§Ã£o</label>
+                <input type="text" id="descricao" name="descricao" placeholder="Breve descriÃ§Ã£o da disciplina" required>
             </div>
             
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
@@ -232,19 +225,17 @@
                         
                         document.getElementById('id').value = disciplina.id || '';
                         document.getElementById('nome').value = disciplina.nome || '';
-                        document.getElementById('codigo').value = disciplina.codigo || '';
                         document.getElementById('carga_horaria').value = disciplina.carga_horaria || '';
-                        document.getElementById('professor').value = disciplina.professor || '';
                         document.getElementById('descricao').value = disciplina.descricao || '';
                     } else {
-                        alert('Disciplina não encontrada!');
+                        alert('Disciplina nÃ£o encontrada!');
                     }
                 })
                 .catch(error => {
                     console.error('Erro ao carregar disciplina:', error);
                     document.getElementById('loading').innerHTML = `
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #e11d48;"></i>
-                        <span style="color: #991b1b;">❌ Erro ao carregar dados!</span>
+                        <span style="color: #991b1b;">âŒ Erro ao carregar dados!</span>
                     `;
                 });
         }
@@ -254,9 +245,7 @@
             
             const disciplina = {
                 nome: document.getElementById('nome').value,
-                codigo: document.getElementById('codigo').value,
                 carga_horaria: document.getElementById('carga_horaria').value,
-                professor: document.getElementById('professor').value,
                 descricao: document.getElementById('descricao').value
             };
             
@@ -278,5 +267,8 @@
         
         window.onload = carregarDisciplina;
     </script>
+    <script src="/static/theme.js"></script>
 </body>
 </html>
+
+
