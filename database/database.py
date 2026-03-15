@@ -8,5 +8,3 @@ DATABASE_URL = os.getenv(
 
 def conectar():
     return psycopg.connect(DATABASE_URL)
-    conexao = psycopg.connect(DATABASE_URL)
-    return conexao
